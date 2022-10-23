@@ -1,0 +1,37 @@
+.easygridspaces {
+  width: 70px;
+  height: 70px;
+}
+.mediumgridspaces {
+  width: 50px;
+  height: 50px;
+}
+.hardgridspaces {
+  width: 40px;
+  height: 40px;
+}
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: white;
+}
+.container .active {
+  background-color: #f9e104;
+}
+.opened {
+  background-color: white;
+  color: purple;
+}
+.bomb {
+  background-image: url("..//assets/mine.png");
+}
+.cell {
+  border: 1px solid purple;
+  font-size: 25px;
+  text-align: center;
+}

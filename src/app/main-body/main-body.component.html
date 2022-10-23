@@ -1,0 +1,25 @@
+<div *ngIf="page == 'home'">
+  <div class="container mx-auto my-5 d-flex flex-row justify-content-around">
+    <div class="elem">
+      <app-option-card
+        [difficulty]="'easy'"
+        [size]="9"
+        [minecount]="10"
+      ></app-option-card>
+    </div>
+    <div class="elem">
+      <app-option-card
+        [difficulty]="'medium'"
+        [size]="16"
+        [minecount]="40"
+      ></app-option-card>
+    </div>
+    <div class="elem">
+      <app-option-card
+        [difficulty]="'hard'"
+        [size]="24"
+        [minecount]="99"
+      ></app-option-card>
+    </div>
+  </div>
+</div>

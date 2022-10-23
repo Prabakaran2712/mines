@@ -1,0 +1,13 @@
+.card {
+  border: 2px solid purple;
+}
+.elem {
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+}
+.header {
+  background-color: #6b5b95;
+  font-size: 25px;
+}
