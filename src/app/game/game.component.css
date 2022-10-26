@@ -35,3 +35,8 @@ a:hover {
   font-size: 25px;
   text-align: center;
 }
+.flag {
+  background-image: url("..//assets/minesflag.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}

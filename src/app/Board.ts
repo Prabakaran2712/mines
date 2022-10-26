@@ -161,6 +161,7 @@ export class Board {
     }
   }
   makemove(x: number, y: number, timer: any): void {
+    if (this.stateboard[x][y] == 'F') return;
     if (this.board[x][y] != '-') {
       return;
     } else {

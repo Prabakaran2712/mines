@@ -16,12 +16,14 @@
               <div *ngIf="cell == '-'">
                 <div
                   class="cell"
+                  (contextmenu)="onRightClick($event, i, j)"
                   (click)="board.makemove(i, j, id)"
                   [ngClass]="{
                     active: board.stateboard[i][j] === 'H',
                     easygridspaces: mode == 'easy',
                     mediumgridspaces: mode == 'medium',
-                    hardgridspaces: mode == 'hard'
+                    hardgridspaces: mode == 'hard',
+                    flag: board.stateboard[i][j] === 'F'
                   }"
                 ></div>
               </div>

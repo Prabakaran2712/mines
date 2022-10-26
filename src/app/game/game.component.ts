@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { Board } from '../Board';
 interface Map {
   [name: string]: any;
@@ -34,7 +35,15 @@ export class GameComponent implements OnInit {
       mines: 99,
     },
   };
-
+  onRightClick(event: any, x: number, y: number) {
+    event.preventDefault();
+    if (this.board.stateboard[x][y] == 'H') {
+      this.board.stateboard[x][y] = 'F';
+    } else if (this.board.stateboard[x][y] == 'F') {
+      this.board.stateboard[x][y] = 'H';
+    }
+    console.log(this.board.stateboard[x][y] == 'F');
+  }
   constructor(private router: ActivatedRoute) {}
   scoreadd() {
     this.score++;
