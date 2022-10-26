@@ -1,6 +1,6 @@
 # Mines
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+Minesweeper Game created with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
 
 ## Development server
 
@@ -14,14 +14,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Rules
 
-## Running end-to-end tests
+Minesweeper rules are very simple. The board is divided into cells, with mines randomly distributed. To win, you need to open all the cells. The number on a cell shows the number of mines adjacent to it. Using this information, you can determine cells that are safe, and cells that contain mines. 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Play Here
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+https://mines-lime.vercel.app/
