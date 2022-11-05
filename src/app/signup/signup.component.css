@@ -1,0 +1,46 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+header {
+  background-color: #f8f8f8;
+  padding: 1%;
+}
+
+.content {
+  width: 550px;
+  margin: 3% auto;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.content-head {
+  background-color: #6b5b95;
+  color: white;
+  padding: 3% 5%;
+}
+.content-body {
+  padding: 3% 5%;
+}
+button {
+  background-color: #6b5b95;
+  color: white;
+  padding: 1% 2%;
+}
+button:hover {
+  border: 1px solid #6b5b95;
+  color: #6b5b95;
+}
+#select-ride-text {
+  color: #4467b9;
+}
+th {
+  background-color: #6b5b95;
+  color: white;
+  border: 1px solid white;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: #6b5b95;
+}

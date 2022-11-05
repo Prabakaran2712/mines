@@ -1,9 +1,30 @@
 <div class="navbar p-4">
-  <div class="name display-4">Mines</div>
+  <div class="name logo">Mines</div>
   <div class="right">
-    <div class="home display mx-3 header-options">
+    <div class="home display mx-4 header-options">
       <a [routerLink]="['/']" routerLinkActive="active">Home</a>
     </div>
-    <div class="login display mx-3 header-options">Login</div>
+    <div class="home display mx-4 header-options">
+      <a [routerLink]="['/leaderboard']" routerLinkActive="active"
+        >Leaderboard</a
+      >
+    </div>
+    <div *ngIf="!userdata; else notlog">
+      <div class="login display mx-4 header-options">
+        <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
+      </div>
+    </div>
+    <ng-template #notlog>
+      <div class="d-flex d-row">
+        <div class="login display mx-4 header-options">
+          {{ userdata }}
+        </div>
+        <div class="login display mx-4 header-options">
+          <button class="btn btn-outline-danger logout" (click)="logout()">
+            Logout
+          </button>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

@@ -1,3 +1,9 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+.logo {
+  font-size: 35px;
+}
 .navbar {
   display: flex;
   flex-direction: row;
@@ -10,9 +16,13 @@
   flex-direction: row;
 }
 .header-options {
-  font-size: 25px;
+  font-size: 22px;
 }
 a {
   text-decoration: none;
+  color: white;
+}
+.logout {
+  border: 2px solid white;
   color: white;
 }

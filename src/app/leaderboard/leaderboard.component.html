@@ -1,0 +1,34 @@
+<div class="leader-board m-5 text-center">
+  <div class="header">{{ "Leaderboard" | uppercase }}</div>
+  <div class="content">
+    <div class="drop-down m-5 w-25">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="option"
+      >
+        <option value="easy">{{ "easy" | uppercase }}</option>
+        <option value="medium">{{ "medium" | uppercase }}</option>
+        <option value="hard">{{ "hard" | uppercase }}</option>
+      </select>
+    </div>
+    <div class="table">
+      <table style="width: 100%" class="mx-auto w-50 my-5">
+        <tr class="">
+          <th>#</th>
+          <th>{{ "username" | uppercase }}</th>
+          <th>{{ "Mode" | uppercase }}</th>
+          <th>{{ "score" | uppercase }}</th>
+        </tr>
+        <ng-container *ngIf="leadersdata">
+          <tr *ngFor="let data of leadersdata | filter: option; let i = index">
+            <td>{{ i }}</td>
+            <td>{{ data.user_details.name }}</td>
+            <td>{{ data.difficulty }}</td>
+            <td>{{ data.score }}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+</div>

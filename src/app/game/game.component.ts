@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { Board } from '../Board';
+import { RestServiceService } from '../rest-service.service';
 interface Map {
   [name: string]: any;
 }
@@ -14,10 +15,12 @@ export class GameComponent implements OnInit {
   score: number = 0;
   mode: string = 'easy';
   board: Board = new Board(9, 9, 10);
-  time: string = '';
+  time: number = 0;
   id: any;
-
+  value: number = 10;
   Interval: any;
+  score_set: boolean = false;
+  user_id: any;
   data: Map = {
     easy: {
       row: 9,
@@ -44,25 +47,67 @@ export class GameComponent implements OnInit {
     }
     console.log(this.board.stateboard[x][y] == 'F');
   }
-  constructor(private router: ActivatedRoute) {}
-  scoreadd() {
-    this.score++;
+  constructor(
+    private router: ActivatedRoute,
+    private serve: RestServiceService
+  ) {}
+
+  timeadd() {
+    this.time++;
   }
   ngOnInit(): void {
+    console.log(this.board.realboard);
     this.mode = this.router.snapshot.params['mode'];
     this.board = new Board(
       this.data[this.mode].row,
       this.data[this.mode].col,
       this.data[this.mode].mines
     );
-
+    console.log('test');
+    this.score_set = false;
     this.id = setInterval(() => {
-      this.scoreadd();
+      this.timeadd();
     }, 1000);
+    this.serve.getUserId().subscribe({
+      next: (data: any) => {
+        this.user_id = data;
+      },
+    });
   }
   cleartimer() {
     if (this.id) {
       clearInterval(this.id);
+    }
+  }
+
+  ngDoCheck() {
+    if (this.board.gameover && this.board.iswin && !this.score_set) {
+      this.serve
+        .addScores({
+          difficulty: this.mode,
+          score: this.board.score,
+          mines: this.data[this.mode].mines,
+          user_id: this.user_id,
+          mazesize: String(
+            this.data[this.mode].row + 'x' + this.data[this.mode].col
+          ),
+        })
+        .subscribe({
+          next: (data) => {
+            console.log(data);
+          },
+        });
+      this.score_set = true;
+    }
+
+    if (this.time > 30) {
+      this.value = 6;
+    } else if (this.time > 60) {
+      this.value = 3;
+    } else if (this.time > 120) {
+      this.value = 1;
+    } else if (this.time > 180) {
+      this.value = 0.1;
     }
   }
 }

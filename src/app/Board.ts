@@ -8,6 +8,8 @@ export class Board {
   colCount: number;
   foundcount: number = 0;
   mineCount: number = 0;
+  score: number = 0;
+
   constructor(row: number, col: number, mineCount: number) {
     this.rowCount = row;
     this.colCount = col;
@@ -77,14 +79,15 @@ export class Board {
     return count;
   }
 
-  revealmap(x: number, y: number) {
+  revealmap(x: number, y: number, value: number) {
+    this.scoreadd(value);
     if (x + 1 < this.rowCount && this.board[x + 1][y] === '-') {
       this.board[x + 1][y] = this.countMines(x + 1, y);
       this.stateboard[x + 1][y] = 'O';
       this.foundcount++;
 
       if (this.countMines(x + 1, y) == 0) {
-        this.revealmap(x + 1, y);
+        this.revealmap(x + 1, y, value);
       }
     }
     if (x - 1 >= 0 && this.board[x - 1][y] === '-') {
@@ -92,7 +95,7 @@ export class Board {
       this.stateboard[x - 1][y] = 'O';
       this.foundcount++;
       if (this.countMines(x - 1, y) == 0) {
-        this.revealmap(x - 1, y);
+        this.revealmap(x - 1, y, value);
       }
     }
     if (
@@ -104,7 +107,7 @@ export class Board {
       this.stateboard[x + 1][y - 1] = 'O';
       this.foundcount++;
       if (this.countMines(x + 1, y - 1) == 0) {
-        this.revealmap(x + 1, y - 1);
+        this.revealmap(x + 1, y - 1, value);
       }
     }
     if (x < this.rowCount && y - 1 >= 0 && this.board[x][y - 1] == '-') {
@@ -112,7 +115,7 @@ export class Board {
       this.stateboard[x][y - 1] = 'O';
       this.foundcount++;
       if (this.countMines(x, y - 1) == 0) {
-        this.revealmap(x, y - 1);
+        this.revealmap(x, y - 1, value);
       }
     }
     if (x - 1 >= 0 && y - 1 >= 0 && this.board[x - 1][y - 1] == '-') {
@@ -120,7 +123,7 @@ export class Board {
       this.stateboard[x - 1][y - 1] = 'O';
       this.foundcount++;
       if (this.countMines(x - 1, y - 1) == 0) {
-        this.revealmap(x - 1, y - 1);
+        this.revealmap(x - 1, y - 1, value);
       }
     }
     if (
@@ -132,7 +135,7 @@ export class Board {
       this.stateboard[x + 1][y + 1] = 'O';
       this.foundcount++;
       if (this.countMines(x + 1, y + 1) == 0) {
-        this.revealmap(x + 1, y + 1);
+        this.revealmap(x + 1, y + 1, value);
       }
     }
     if (
@@ -144,7 +147,7 @@ export class Board {
       this.board[x][y + 1] = this.countMines(x, y + 1);
       this.foundcount++;
       if (this.countMines(x, y + 1) == 0) {
-        this.revealmap(x, y + 1);
+        this.revealmap(x, y + 1, value);
       }
     }
     if (
@@ -156,11 +159,15 @@ export class Board {
       this.board[x - 1][y + 1] = this.countMines(x - 1, y + 1);
       this.foundcount++;
       if (this.countMines(x - 1, y + 1) == 0) {
-        this.revealmap(x - 1, y + 1);
+        this.revealmap(x - 1, y + 1, value);
       }
     }
   }
-  makemove(x: number, y: number, timer: any): void {
+
+  scoreadd(value: number) {
+    this.score += value;
+  }
+  makemove(x: number, y: number, timer: any, value: number): void {
     if (this.stateboard[x][y] == 'F') return;
     if (this.board[x][y] != '-') {
       return;
@@ -177,7 +184,7 @@ export class Board {
         this.foundcount++;
         if (this.countMines(x, y) == 0) {
           console.log(x + ' ' + y);
-          this.revealmap(x, y);
+          this.revealmap(x, y, value);
         }
         if (
           this.foundcount ===

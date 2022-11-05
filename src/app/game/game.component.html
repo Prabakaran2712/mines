@@ -6,7 +6,8 @@
       <div class="title">
         {{ mode | uppercase }}
       </div>
-      <div class="time">{{ score }}</div>
+      <div class="time">{{ time }}</div>
+      <div class="time">{{ board.foundcount * value }}</div>
     </div>
     <div class="game-box d-flex flex-row justify-content-center my-5">
       <div class="game-box d-flex flex-column">
@@ -17,7 +18,7 @@
                 <div
                   class="cell"
                   (contextmenu)="onRightClick($event, i, j)"
-                  (click)="board.makemove(i, j, id)"
+                  (click)="board.makemove(i, j, id, value)"
                   [ngClass]="{
                     active: board.stateboard[i][j] === 'H',
                     easygridspaces: mode == 'easy',
@@ -30,7 +31,7 @@
               <div *ngIf="cell != '-'">
                 <div
                   class="cell"
-                  (click)="board.makemove(i, j, id)"
+                  (click)="board.makemove(i, j, id, value)"
                   [ngClass]="{
                     opened: board.stateboard[i][j] === 'O',
                     easygridspaces: mode == 'easy',
@@ -46,13 +47,25 @@
         </tr>
       </div>
     </div>
+    <div class="game-box d-flex flex-row justify-content-center my-5">
+      <div class="game-box d-flex flex-column">
+        <tr *ngFor="let data of board.realboard; let i = index">
+          <div class="game-rows d-flex flex-row">
+            <td *ngFor="let cell of data; let j = index">
+              {{ cell }}
+            </td>
+          </div>
+        </tr>
+      </div>
+    </div>
   </div>
 </div>
 
 <div *ngIf="board.gameover == true && !board.iswin">
   <div class="game-over-container text-center my-5">
     <div class="score mt-5 p-3 display-1 text-danger">GAME OVER</div>
-    <div class="score p-3 mb-5 display-6">Your Time is {{ score }}</div>
+    <div class="score p-3 mb-5 display-6">Your Score is {{ board.score }}</div>
+
     <div class="back">
       <button class="btn btn-outline-danger">
         <a
@@ -68,7 +81,8 @@
 <div *ngIf="board.gameover == true && board.iswin">
   <div class="game-over-container text-center my-5">
     <div class="score mt-5 p-3 display-1 text-success">YOU WIN</div>
-    <div class="score p-3 mb-5 display-6">Your Time is {{ score }}</div>
+    <div class="score p-3 mb-2 display-6">Your Time is {{ time }}</div>
+    <div class="score p-3 mb-5 display-6">Your Score is {{ board.score }}</div>
     <div class="back">
       <button class="btn btn-outline-success">
         <a

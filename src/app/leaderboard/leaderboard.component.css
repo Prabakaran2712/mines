@@ -1,0 +1,24 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.header {
+  font-size: 45px;
+}
+th {
+  background-color: #eceef0;
+}
+td,
+th {
+  padding: 10px;
+  border-left: none;
+  border-right: none;
+}
+.drop-down {
+  float: right;
+}
