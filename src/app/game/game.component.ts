@@ -57,6 +57,8 @@ export class GameComponent implements OnInit {
       this.milliseconds = 0;
       this.time += 1;
     }
+
+    this.milliseconds += 4;
   }
   millisecondsadd() {
     this.milliseconds++;
@@ -72,7 +74,7 @@ export class GameComponent implements OnInit {
     this.score_set = false;
     this.id = setInterval(() => {
       this.timeadd();
-    }, 1000);
+    }, 1);
     this.serve.getUserId().subscribe({
       next: (data: any) => {
         this.user_id = data;
