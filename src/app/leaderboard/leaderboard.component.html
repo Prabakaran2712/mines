@@ -17,8 +17,7 @@
         <tr class="">
           <th>#</th>
           <th>{{ "username" | uppercase }}</th>
-          <th>{{ "Mode" | uppercase }}</th>
-          <th>{{ "score" | uppercase }}</th>
+          <th>{{ "time" | uppercase }}</th>
         </tr>
         <ng-container *ngIf="leadersdata">
           <tr *ngFor="let data of leadersdata | filter: option; let i = index">
