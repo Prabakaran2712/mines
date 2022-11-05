@@ -15,6 +15,7 @@ export class LeaderboardComponent implements OnInit {
     this.serve.getScores().subscribe({
       next: (data) => {
         this.leadersdata = data;
+        this.leadersdata = this.leadersdata.slice(0, 11);
       },
     });
   }
