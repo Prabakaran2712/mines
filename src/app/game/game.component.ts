@@ -85,7 +85,7 @@ export class GameComponent implements OnInit {
           difficulty: this.mode,
           score: this.board.score,
           mines: this.data[this.mode].mines,
-          user_id: this.user_id,
+          user_details: this.user_id,
           mazesize: String(
             this.data[this.mode].row + 'x' + this.data[this.mode].col
           ),
