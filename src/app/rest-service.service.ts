@@ -12,16 +12,23 @@ export class RestServiceService {
   constructor(private http: HttpClient) {}
   addUsers(users: any): Observable<any> {
     const options = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post('/api/auth', users, { headers: options }).pipe();
+    return this.http
+      .post('https://mines-api.vercel.app/api/auth', users, {
+        headers: options,
+      })
+      .pipe();
   }
   getLogin(): Observable<any[]> {
-    return this.http.get<any[]>('/api/auth/');
+    return this.http.get<any[]>('https://mines-api.vercel.app/api/auth/');
   }
   isUserAuthenticated(username: string, password: string): Observable<any[]> {
-    return this.http.post<any[]>('/api/auth/login', {
-      email: username,
-      password: password,
-    });
+    return this.http.post<any[]>(
+      'https://mines-api.vercel.app/api/auth/login',
+      {
+        email: username,
+        password: password,
+      }
+    );
   }
   isUserLoggedIn(): boolean {
     if (this.userdetial) return true;
@@ -34,7 +41,9 @@ export class RestServiceService {
   getUser(): any {
     this.userid = localStorage.getItem('userid');
     if (this.userid) {
-      let us = this.http.get(`/api/auth/${this.userid}`);
+      let us = this.http.get(
+        `https://mines-api.vercel.app/api/auth/${this.userid}`
+      );
 
       return us;
     }
@@ -48,7 +57,10 @@ export class RestServiceService {
   }
   //add scores
   addScores(data: any) {
-    return this.http.post<any[]>('/api/score', data);
+    return this.http.post<any[]>(
+      'https://mines-api.vercel.app/api/score',
+      data
+    );
   }
   getScores() {
     return this.http.get<any[]>('https://mines-api.vercel.app/api/score');
