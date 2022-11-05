@@ -77,21 +77,6 @@ export class GameComponent implements OnInit {
       clearInterval(this.id);
     }
   }
-  test() {
-    this.serve
-      .addScores({
-        difficulty: this.mode,
-        score: this.board.score,
-        mines: this.data[this.mode].mines,
-        user_details: this.user_id,
-        mazesize: String(
-          this.data[this.mode].row + 'x' + this.data[this.mode].col
-        ),
-      })
-      .subscribe({
-        next: (data) => {},
-      });
-  }
 
   ngDoCheck() {
     if (this.board.gameover && this.board.iswin && !this.score_set) {
