@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         if (authenticated.user.length) {
           this.validUser = true;
           this.router.navigate(['']);
-          console.log(authenticated);
+
           this.serve.setUser(
             authenticated.user[0]._id,
             authenticated.user[0].name

@@ -59,7 +59,6 @@ export class Board {
       y + 1 < this.colCount &&
       this.realboard[x + 1][y + 1] == '*'
     ) {
-      console.log(x + ' ' + y);
       count++;
     }
     if (
@@ -183,7 +182,6 @@ export class Board {
         this.stateboard[x][y] = 'O';
         this.foundcount++;
         if (this.countMines(x, y) == 0) {
-          console.log(x + ' ' + y);
           this.revealmap(x, y, value);
         }
         if (

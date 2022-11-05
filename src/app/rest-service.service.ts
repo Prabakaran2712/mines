@@ -12,15 +12,13 @@ export class RestServiceService {
   constructor(private http: HttpClient) {}
   addUsers(users: any): Observable<any> {
     const options = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http
-      .post('http://localhost:4000/api/auth', users, { headers: options })
-      .pipe();
+    return this.http.post('/api/auth', users, { headers: options }).pipe();
   }
   getLogin(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:4000/api/auth/');
+    return this.http.get<any[]>('/api/auth/');
   }
   isUserAuthenticated(username: string, password: string): Observable<any[]> {
-    return this.http.post<any[]>('http://localhost:4000/api/auth/login', {
+    return this.http.post<any[]>('/api/auth/login', {
       email: username,
       password: password,
     });
@@ -36,7 +34,7 @@ export class RestServiceService {
   getUser(): any {
     this.userid = localStorage.getItem('userid');
     if (this.userid) {
-      let us = this.http.get(`http://localhost:4000/api/auth/${this.userid}`);
+      let us = this.http.get(`/api/auth/${this.userid}`);
 
       return us;
     }
@@ -50,9 +48,9 @@ export class RestServiceService {
   }
   //add scores
   addScores(data: any) {
-    return this.http.post<any[]>('http://localhost:4000/api/score', data);
+    return this.http.post<any[]>('/api/score', data);
   }
   getScores() {
-    return this.http.get<any[]>('http://localhost:4000/api/score');
+    return this.http.get<any[]>('/api/score');
   }
 }

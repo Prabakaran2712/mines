@@ -45,7 +45,6 @@ export class GameComponent implements OnInit {
     } else if (this.board.stateboard[x][y] == 'F') {
       this.board.stateboard[x][y] = 'H';
     }
-    console.log(this.board.stateboard[x][y] == 'F');
   }
   constructor(
     private router: ActivatedRoute,
@@ -56,14 +55,13 @@ export class GameComponent implements OnInit {
     this.time++;
   }
   ngOnInit(): void {
-    console.log(this.board.realboard);
     this.mode = this.router.snapshot.params['mode'];
     this.board = new Board(
       this.data[this.mode].row,
       this.data[this.mode].col,
       this.data[this.mode].mines
     );
-    console.log('test');
+
     this.score_set = false;
     this.id = setInterval(() => {
       this.timeadd();
@@ -93,9 +91,7 @@ export class GameComponent implements OnInit {
           ),
         })
         .subscribe({
-          next: (data) => {
-            console.log(data);
-          },
+          next: (data) => {},
         });
       this.score_set = true;
     }
