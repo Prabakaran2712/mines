@@ -51,6 +51,6 @@ export class RestServiceService {
     return this.http.post<any[]>('/api/score', data);
   }
   getScores() {
-    return this.http.get<any[]>('/api/score');
+    return this.http.get<any[]>('https://mines-api.vercel.app/api/score');
   }
 }
