@@ -53,7 +53,7 @@
 <div *ngIf="board.gameover == true && !board.iswin">
   <div class="game-over-container text-center my-5">
     <div class="score mt-5 p-3 display-1 text-danger">GAME OVER</div>
-    <div class="score p-3 mb-5 display-6">Your Score is {{ board.score }}</div>
+    <div class="score p-3 mb-5 display-6">Better Luck Next Time :(</div>
 
     <div class="back">
       <button class="btn btn-outline-danger">
@@ -70,8 +70,8 @@
 <div *ngIf="board.gameover == true && board.iswin">
   <div class="game-over-container text-center my-5">
     <div class="score mt-5 p-3 display-1 text-success">YOU WIN</div>
-    <div class="score p-3 mb-2 display-6">Your Time is {{ time }}</div>
-    <div class="score p-3 mb-5 display-6">Your Score is {{ board.score }}</div>
+    <div class="score p-3 mb-2 display-6">Your Time is {{ score }}</div>
+
     <div class="back">
       <button class="btn btn-outline-success">
         <a

@@ -21,6 +21,7 @@ export class GameComponent implements OnInit {
   Interval: any;
   score_set: boolean = false;
   user_id: any;
+  milliseconds: any = 0;
   data: Map = {
     easy: {
       row: 9,
@@ -52,7 +53,13 @@ export class GameComponent implements OnInit {
   ) {}
 
   timeadd() {
-    this.time++;
+    if (this.milliseconds >= 1000) {
+      this.milliseconds = 0;
+      this.time += 1;
+    }
+  }
+  millisecondsadd() {
+    this.milliseconds++;
   }
   ngOnInit(): void {
     this.mode = this.router.snapshot.params['mode'];
@@ -80,10 +87,11 @@ export class GameComponent implements OnInit {
 
   ngDoCheck() {
     if (this.board.gameover && this.board.iswin && !this.score_set) {
+      this.score = this.time + Math.pow(10, -13) * this.milliseconds;
       this.serve
         .addScores({
           difficulty: this.mode,
-          score: this.board.score,
+          score: this.score,
           mines: this.data[this.mode].mines,
           user_details: this.user_id,
           mazesize: String(
