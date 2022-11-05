@@ -23,7 +23,6 @@
           <tr *ngFor="let data of leadersdata | filter: option; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ data.user_details.name }}</td>
-            <td>{{ data.difficulty }}</td>
             <td>{{ data.score }}</td>
           </tr>
         </ng-container>
