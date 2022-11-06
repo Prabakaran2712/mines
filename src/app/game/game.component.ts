@@ -22,6 +22,13 @@ export class GameComponent implements OnInit {
   score_set: boolean = false;
   user_id: any;
   milliseconds: any = 0;
+
+  seconds = 0;
+  tens = 0;
+
+  displaySeconds = '00';
+  displayTens = '00';
+
   data: Map = {
     easy: {
       row: 9,
@@ -72,9 +79,12 @@ export class GameComponent implements OnInit {
     );
 
     this.score_set = false;
+    // this.id = setInterval(() => {
+    //   this.timeadd();
+    // }, 1);
     this.id = setInterval(() => {
-      this.timeadd();
-    }, 1);
+      this.startTime();
+    }, 10);
     this.serve.getUserId().subscribe({
       next: (data: any) => {
         this.user_id = data;
@@ -87,9 +97,31 @@ export class GameComponent implements OnInit {
     }
   }
 
+  startTime(): void {
+    this.tens++;
+
+    if (this.tens <= 9) {
+      this.displayTens = '0' + this.tens;
+    } else {
+      this.displayTens = this.tens.toString();
+    }
+
+    if (this.tens > 99) {
+      this.seconds++;
+      this.displaySeconds = '0' + this.seconds;
+      this.tens = 0;
+      this.displayTens = '0' + 0;
+    }
+
+    if (this.seconds > 9) {
+      this.displaySeconds = this.seconds.toString();
+    }
+  }
+
   ngDoCheck() {
     if (this.board.gameover && this.board.iswin && !this.score_set) {
-      this.score = this.time + Math.pow(10, -13) * this.milliseconds;
+      // this.score = this.time + Math.pow(10, -13) * this.milliseconds;
+      this.score = this.seconds + this.tens / 1000;
       this.serve
         .addScores({
           difficulty: this.mode,
