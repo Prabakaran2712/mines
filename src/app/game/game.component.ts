@@ -23,11 +23,8 @@ export class GameComponent implements OnInit {
   user_id: any;
   milliseconds: any = 0;
 
-  seconds = 0;
-  tens = 0;
-
-  displaySeconds = '00';
-  displayTens = '00';
+  displayTime: any;
+  startTime: any;
 
   data: Map = {
     easy: {
@@ -59,18 +56,16 @@ export class GameComponent implements OnInit {
     private serve: RestServiceService
   ) {}
 
-  timeadd() {
-    if (this.milliseconds >= 1000) {
-      this.milliseconds = 0;
-      this.time += 1;
-    }
+  updateDisplayTime() {
+    this.displayTime =
+      Math.ceil((Date.now() - this.startTime) / 1000) +
+      ':' +
+      ((Math.ceil((Date.now() - this.startTime) / 10) % 90) + 10);
+  }
 
-    this.milliseconds += 4;
-  }
-  millisecondsadd() {
-    this.milliseconds++;
-  }
   ngOnInit(): void {
+    this.startTime = Date.now();
+
     this.mode = this.router.snapshot.params['mode'];
     this.board = new Board(
       this.data[this.mode].row,
@@ -79,11 +74,8 @@ export class GameComponent implements OnInit {
     );
 
     this.score_set = false;
-    // this.id = setInterval(() => {
-    //   this.timeadd();
-    // }, 1);
     this.id = setInterval(() => {
-      this.startTime();
+      this.updateDisplayTime();
     }, 10);
     this.serve.getUserId().subscribe({
       next: (data: any) => {
@@ -97,31 +89,9 @@ export class GameComponent implements OnInit {
     }
   }
 
-  startTime(): void {
-    this.tens++;
-
-    if (this.tens <= 9) {
-      this.displayTens = '0' + this.tens;
-    } else {
-      this.displayTens = this.tens.toString();
-    }
-
-    if (this.tens > 99) {
-      this.seconds++;
-      this.displaySeconds = '0' + this.seconds;
-      this.tens = 0;
-      this.displayTens = '0' + 0;
-    }
-
-    if (this.seconds > 9) {
-      this.displaySeconds = this.seconds.toString();
-    }
-  }
-
   ngDoCheck() {
     if (this.board.gameover && this.board.iswin && !this.score_set) {
-      // this.score = this.time + Math.pow(10, -13) * this.milliseconds;
-      this.score = this.seconds + this.tens / 1000;
+      this.score = (Date.now() - this.startTime) / 1000;
       this.serve
         .addScores({
           difficulty: this.mode,
