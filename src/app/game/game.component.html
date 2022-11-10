@@ -6,7 +6,7 @@
       <div class="title">
         {{ mode | uppercase }}
       </div>
-      <div class="time">{{ time }}</div>
+      <div class="time">{{ displayTime }}</div>
     </div>
     <div class="game-box d-flex flex-row justify-content-center my-5">
       <div class="game-box d-flex flex-column">
@@ -69,7 +69,7 @@
 <div *ngIf="board.gameover == true && board.iswin">
   <div class="game-over-container text-center my-5">
     <div class="score mt-5 p-3 display-1 text-success">YOU WIN</div>
-    <div class="score p-3 mb-2 display-6">Your Time is {{ score }}</div>
+    <div class="score p-3 mb-2 display-6">Your time is {{ score }} secs</div>
 
     <div class="back">
       <button class="btn btn-outline-success">

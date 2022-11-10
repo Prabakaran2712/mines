@@ -22,6 +22,10 @@ export class GameComponent implements OnInit {
   score_set: boolean = false;
   user_id: any;
   milliseconds: any = 0;
+
+  displayTime: any;
+  startTime: any;
+
   data: Map = {
     easy: {
       row: 9,
@@ -52,18 +56,16 @@ export class GameComponent implements OnInit {
     private serve: RestServiceService
   ) {}
 
-  timeadd() {
-    if (this.milliseconds >= 1000) {
-      this.milliseconds = 0;
-      this.time += 1;
-    }
+  updateDisplayTime() {
+    this.displayTime =
+      Math.ceil((Date.now() - this.startTime) / 1000) +
+      ':' +
+      ((Math.ceil((Date.now() - this.startTime) / 10) % 90) + 10);
+  }
 
-    this.milliseconds += 4;
-  }
-  millisecondsadd() {
-    this.milliseconds++;
-  }
   ngOnInit(): void {
+    this.startTime = Date.now();
+
     this.mode = this.router.snapshot.params['mode'];
     this.board = new Board(
       this.data[this.mode].row,
@@ -73,8 +75,8 @@ export class GameComponent implements OnInit {
 
     this.score_set = false;
     this.id = setInterval(() => {
-      this.timeadd();
-    }, 1);
+      this.updateDisplayTime();
+    }, 10);
     this.serve.getUserId().subscribe({
       next: (data: any) => {
         this.user_id = data;
@@ -89,7 +91,7 @@ export class GameComponent implements OnInit {
 
   ngDoCheck() {
     if (this.board.gameover && this.board.iswin && !this.score_set) {
-      this.score = this.time + Math.pow(10, -13) * this.milliseconds;
+      this.score = (Date.now() - this.startTime) / 1000;
       this.serve
         .addScores({
           difficulty: this.mode,
