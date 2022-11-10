@@ -20,6 +20,9 @@ import { FilterPipe } from './filter.pipe';
 import { LoadingComponent } from './loading/loading.component';
 import { GameCardComponent } from './game-card/game-card.component';
 import { NgPipesModule } from 'ngx-pipes';
+import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { NgPipesModule } from 'ngx-pipes';
     FormsModule,
     NgPipesModule,
     HttpClientModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

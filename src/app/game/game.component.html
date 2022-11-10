@@ -6,7 +6,15 @@
       <div class="title">
         {{ mode | uppercase }}
       </div>
-      <div class="time">{{ displayTime }}</div>
+
+      <div class="time">
+        <fa-icon [icon]="clockicon"></fa-icon>
+        {{ displayTime }}
+      </div>
+      <div class="flags">
+        <fa-icon [icon]="flagicon" style="color: rgb(213, 7, 7)"></fa-icon>
+        {{ flagcount }}
+      </div>
     </div>
     <div class="game-box d-flex flex-row justify-content-center my-5">
       <div class="game-box d-flex flex-column">

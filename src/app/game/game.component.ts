@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { Board } from '../Board';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { RestServiceService } from '../rest-service.service';
 interface Map {
   [name: string]: any;
@@ -12,6 +14,9 @@ interface Map {
   styleUrls: ['./game.component.css'],
 })
 export class GameComponent implements OnInit {
+  clockicon = faClock;
+  flagicon = faFlag;
+  flagcount: number = 0;
   score: number = 0;
   mode: string = 'easy';
   board: Board = new Board(9, 9, 10);
@@ -48,8 +53,10 @@ export class GameComponent implements OnInit {
     event.preventDefault();
     if (this.board.stateboard[x][y] == 'H') {
       this.board.stateboard[x][y] = 'F';
+      this.flagcount--;
     } else if (this.board.stateboard[x][y] == 'F') {
       this.board.stateboard[x][y] = 'H';
+      this.flagcount++;
     }
   }
   constructor(
@@ -95,7 +102,7 @@ export class GameComponent implements OnInit {
       this.data[this.mode].col,
       this.data[this.mode].mines
     );
-
+    this.flagcount = this.data[this.mode].mines;
     this.score_set = false;
     this.id = setInterval(() => {
       this.updateDisplayTime();
