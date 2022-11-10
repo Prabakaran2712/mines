@@ -17,7 +17,9 @@
     <ng-template #notlog>
       <div class="d-flex d-row">
         <div class="login display mx-4 header-options">
-          {{ userdata }}
+          <a [routerLink]="['/profile']" routerLinkActive="active">{{
+            userdata
+          }}</a>
         </div>
         <div class="login display mx-4 header-options">
           <button class="btn btn-outline-danger logout" (click)="logout()">

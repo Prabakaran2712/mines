@@ -1,0 +1,10 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+}
+.header {
+  font-size: 40px;
+}
+td {
+  padding: 10px;
+}

@@ -17,6 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MatchesComponent } from './matches/matches.component';
 import { FilterPipe } from './filter.pipe';
+import { LoadingComponent } from './loading/loading.component';
+import { GameCardComponent } from './game-card/game-card.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { FilterPipe } from './filter.pipe';
     LeaderboardComponent,
     MatchesComponent,
     FilterPipe,
+    LoadingComponent,
+    GameCardComponent,
   ],
   imports: [
     BrowserModule,

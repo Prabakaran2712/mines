@@ -1,1 +1,68 @@
-<p>profile works!</p>
+<div *ngIf="userdetails" else #loading>
+  <div class="profile-page d-flex d-flex flex-row justify-content-evenly">
+    <div class="profile p-5">
+      <div class="header my-3 text-center">{{ "Profile" | uppercase }}</div>
+      <div class="content p-5">
+        <table class="mx-auto">
+          <tr>
+            <td><div class="label">Name :</div></td>
+            <td>
+              <div class="value">
+                {{ userdetails.name }}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="label">Email :</div></td>
+            <td>
+              <div class="value">
+                {{ userdetails.email }}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><div class="label">Created at :</div></td>
+            <td>
+              <div class="value">
+                {{ userdetails.createdAt | date: "medium" }}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="text-center">
+              <div class="fw-bolder">
+                {{ "best timing" | uppercase }}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="label">Easy :</div></td>
+            <td>
+              <div class="value"></div>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="label">Medium :</div></td>
+            <td>
+              <div class="value"></div>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="label">Hard :</div></td>
+            <td>
+              <div class="value"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="game-list p-5">
+      <div class="header my-3 text-center">{{ "Your Games" | uppercase }}</div>
+    </div>
+  </div>
+</div>
+<ng-template>
+  <app-loading></app-loading>
+</ng-template>
