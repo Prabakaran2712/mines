@@ -8,3 +8,6 @@
 td {
   padding: 10px;
 }
+.game-list .content {
+  height: 60vh;
+}

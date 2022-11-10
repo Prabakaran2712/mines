@@ -1,0 +1,10 @@
+.element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 7em;
+  margin-right: 7em;
+}
+.last-played {
+  font-weight: lighter;
+}

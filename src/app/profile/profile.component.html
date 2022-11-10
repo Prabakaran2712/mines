@@ -58,8 +58,13 @@
         </table>
       </div>
     </div>
-    <div class="game-list p-5">
+    <div class="game-list p-5 flex-fill">
       <div class="header my-3 text-center">{{ "Your Games" | uppercase }}</div>
+      <div class="content overflow-scroll">
+        <div *ngFor="let data of scoredetails">
+          <app-game-card [data]="data"></app-game-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

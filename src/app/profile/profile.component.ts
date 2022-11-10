@@ -8,12 +8,18 @@ import { RestServiceService } from '../rest-service.service';
 })
 export class ProfileComponent implements OnInit {
   userdetails: any;
+  scoredetails!: any[];
   constructor(public serve: RestServiceService) {}
 
   ngOnInit(): void {
     this.serve.getUser().subscribe({
       next: (data: any) => {
         this.userdetails = data;
+      },
+    });
+    this.serve.getUserScores().subscribe({
+      next: (data: any) => {
+        this.scoredetails = data;
       },
     });
   }

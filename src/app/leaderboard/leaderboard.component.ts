@@ -14,7 +14,7 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit(): void {
     this.serve.getScores().subscribe({
       next: (data) => {
-        this.leadersdata = data;
+        this.leadersdata = data.filter((d) => d.win);
         this.leadersdata = this.leadersdata.slice(0, 11);
       },
     });

@@ -1,1 +1,46 @@
-<p>game-card works!</p>
+<div
+  class="text-success my-5 game-card game-card border border-3 border-success p-1 w-75 mx-auto"
+  *ngIf="data.win"
+>
+  <div class="text-success text-center fs-1">{{ "win" | uppercase }}</div>
+  <div class="">
+    <div class="element">
+      <div class="label">{{ "Time" | uppercase }}</div>
+      <div class="elem-value">{{ data.score }}</div>
+    </div>
+    <div class="element">
+      <div class="label">{{ "difficulty" | uppercase }}</div>
+      <div class="elem-value">{{ data.difficulty | uppercase }}</div>
+    </div>
+    <div class="element">
+      <div class="label">{{ "Maze Size" | uppercase }}</div>
+      <div class="elem-value">{{ data.mazesize | uppercase }}</div>
+    </div>
+  </div>
+  <div class="last-played text-center mt-5">{{ date | timeAgo }}</div>
+</div>
+<div
+  class="game-card my-5 border border-3 border-danger text-danger p-1 w-75 mx-auto"
+  *ngIf="!data.win"
+>
+  <div class="text-center fs-1">{{ "LOSS" | uppercase }}</div>
+  <div class="">
+    <div class="element">
+      <div class="label">{{ "Time" | uppercase }}</div>
+      <div class="elem-value">{{ data.score }}</div>
+    </div>
+    <div class="element">
+      <div class="label">{{ "difficulty" | uppercase }}</div>
+      <div class="elem-value">{{ data.difficulty | uppercase }}</div>
+    </div>
+    <div class="element">
+      <div class="label">{{ "Maze Size" | uppercase }}</div>
+      <div class="elem-value">{{ data.mazesize | uppercase }}</div>
+    </div>
+    <div class="element">
+      <div class="label">{{ "Blocks Opened" | uppercase }}</div>
+      <div class="elem-value">{{ data.minesOpened }}/{{ row * col }}</div>
+    </div>
+  </div>
+  <div class="last-played text-center mt-5">{{ date | timeAgo }}</div>
+</div>

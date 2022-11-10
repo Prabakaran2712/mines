@@ -19,6 +19,7 @@ import { MatchesComponent } from './matches/matches.component';
 import { FilterPipe } from './filter.pipe';
 import { LoadingComponent } from './loading/loading.component';
 import { GameCardComponent } from './game-card/game-card.component';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { GameCardComponent } from './game-card/game-card.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-
+    NgPipesModule,
     HttpClientModule,
   ],
   providers: [],

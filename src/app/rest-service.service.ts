@@ -65,4 +65,16 @@ export class RestServiceService {
   getScores() {
     return this.http.get<any[]>('https://mines-api.vercel.app/api/score');
   }
+  getUserScores() {
+    let id;
+    this.getUserId().subscribe({
+      next: (data: any) => {
+        id = data;
+      },
+    });
+
+    let us = this.http.get(`https://mines-api.vercel.app/api/score/${id}`);
+
+    return us;
+  }
 }
