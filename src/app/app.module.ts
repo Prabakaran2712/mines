@@ -23,6 +23,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FilterPipe,
     LoadingComponent,
     GameCardComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

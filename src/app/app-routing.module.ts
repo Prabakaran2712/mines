@@ -5,6 +5,7 @@ import { GameComponent } from './game/game.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { LoginComponent } from './login/login.component';
 import { MainBodyComponent } from './main-body/main-body.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'leaderboard', component: LeaderboardComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
