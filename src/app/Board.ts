@@ -198,12 +198,28 @@ export class Board {
       return;
     } else {
       if (this.realboard[x][y] == '*') {
-        this.gameover = true;
-        if (timer) {
-          clearInterval(timer);
+        if (!this.firstTurn) {
+          this.gameover = true;
+          if (timer) {
+            clearInterval(timer);
+          }
+          return;
+        } else {
+          this.realboard[x][y] = '-';
+          for (var i = 0; i < this.realboard.length; i++) {
+            for (var j = 0; j < this.realboard[0].length; j++) {
+              if (this.realboard[i][j] != '*') {
+                this.realboard[i][j] = '*';
+                break;
+              }
+            }
+          }
+
+          this.makemove(x, y, timer, value);
+          this.firstTurn = false;
         }
-        return;
       } else {
+        this.firstTurn = false;
         this.board[x][y] = this.countMines(x, y);
         this.stateboard[x][y] = 'O';
         this.foundcount++;
