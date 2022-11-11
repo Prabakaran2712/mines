@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   @Output() onHome = new EventEmitter<string>();
   islogged = false;
   userdata!: any;
+  userid!: any;
   constructor(public serve: RestServiceService, public router: Router) {}
   back(value: string) {
     this.onHome.emit(value);
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
   ngDoCheck() {
     if (localStorage.getItem('username')) {
       this.userdata = localStorage.getItem('username');
+      this.userid = localStorage.getItem('userid');
     }
   }
   ngOnInit(): void {}

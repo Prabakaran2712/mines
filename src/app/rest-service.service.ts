@@ -38,12 +38,9 @@ export class RestServiceService {
     localStorage.setItem('userid', id);
     localStorage.setItem('username', name);
   }
-  getUser(): any {
-    this.userid = localStorage.getItem('userid');
-    if (this.userid) {
-      let us = this.http.get(
-        `https://mines-api.vercel.app/api/auth/${this.userid}`
-      );
+  getUser(id: string): any {
+    if (id) {
+      let us = this.http.get(`https://mines-api.vercel.app/api/auth/${id}`);
 
       return us;
     }
@@ -65,14 +62,7 @@ export class RestServiceService {
   getScores() {
     return this.http.get<any[]>('https://mines-api.vercel.app/api/score');
   }
-  getUserScores() {
-    let id;
-    this.getUserId().subscribe({
-      next: (data: any) => {
-        id = data;
-      },
-    });
-
+  getUserScores(id: string) {
     let us = this.http.get(`https://mines-api.vercel.app/api/score/${id}`);
 
     return us;

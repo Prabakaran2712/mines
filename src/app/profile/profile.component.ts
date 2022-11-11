@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestServiceService } from '../rest-service.service';
 
 @Component({
@@ -13,15 +14,20 @@ export class ProfileComponent implements OnInit {
   mediumbest = 0;
   hardbest = 0;
   allscore!: any;
-  constructor(public serve: RestServiceService) {}
+  userid!: string;
+  constructor(
+    public serve: RestServiceService,
+    private router: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.serve.getUser().subscribe({
+    this.userid = this.router.snapshot.params['id'];
+    this.serve.getUser(this.userid).subscribe({
       next: (data: any) => {
         this.userdetails = data;
       },
     });
-    this.serve.getUserScores().subscribe({
+    this.serve.getUserScores(this.userid).subscribe({
       next: (data: any) => {
         this.scoredetails = data;
       },
