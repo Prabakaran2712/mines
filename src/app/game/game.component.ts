@@ -16,7 +16,6 @@ interface Map {
 export class GameComponent implements OnInit {
   clockicon = faClock;
   flagicon = faFlag;
-  flagcount: number = 0;
   score: number = 0;
   mode: string = 'easy';
   board: Board = new Board(9, 9, 10);
@@ -53,10 +52,10 @@ export class GameComponent implements OnInit {
     event.preventDefault();
     if (this.board.stateboard[x][y] == 'H') {
       this.board.stateboard[x][y] = 'F';
-      this.flagcount--;
+      this.board.flagcount--;
     } else if (this.board.stateboard[x][y] == 'F') {
       this.board.stateboard[x][y] = 'H';
-      this.flagcount++;
+      this.board.flagcount++;
     }
   }
   constructor(
@@ -102,7 +101,7 @@ export class GameComponent implements OnInit {
       this.data[this.mode].col,
       this.data[this.mode].mines
     );
-    this.flagcount = this.data[this.mode].mines;
+
     this.score_set = false;
     this.id = setInterval(() => {
       this.updateDisplayTime();
