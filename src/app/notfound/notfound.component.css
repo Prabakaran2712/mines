@@ -38,19 +38,9 @@ body {
 }
 
 .logo-404 {
-  position: absolute;
   margin-left: auto;
   margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 16vmin;
   width: 30vmin;
-  margin-top: 10%;
-}
-@media (max-width: 480px) and (min-width: 320px) {
-  .logo-404 {
-    top: 45vmin;
-  }
 }
 
 .meteor {
@@ -67,18 +57,15 @@ body {
   font-size: 5vmin;
   margin-top: 31vmin;
 }
-@media (max-width: 480px) and (min-width: 320px) {
-  .title {
-    margin-top: 65vmin;
-  }
-}
 
 .subtitle {
   color: red;
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-weight: 1000;
   text-align: center;
-  font-size: 3.5vmin;
+  font-size: 5vmin;
+  /* position: absolute;
+  top: 50%; */
 }
 
 .btn-back {
@@ -94,11 +81,6 @@ body {
   background: white;
   color: #4d007d;
 }
-@media (max-width: 480px) and (min-width: 320px) {
-  .btn-back {
-    font-size: 3.5vmin;
-  }
-}
 
 .astronaut {
   position: absolute;
@@ -107,20 +89,9 @@ body {
   height: 30vmin;
   animation: floating 3s infinite ease-in-out;
 }
-@media (max-width: 480px) and (min-width: 320px) {
-  .astronaut {
-    top: 2vmin;
-  }
-}
 
 .spaceship {
   position: absolute;
   bottom: 15vmin;
   right: 24vmin;
-}
-@media (max-width: 480px) and (min-width: 320px) {
-  .spaceship {
-    width: 45vmin;
-    bottom: 18vmin;
-  }
 }
