@@ -32,14 +32,11 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.serve.isUserAuthenticated(this.username, this.password).subscribe({
       next: (authenticated: any) => {
-        if (authenticated.user.length) {
+        if (authenticated.user) {
           this.validUser = true;
           this.router.navigate(['']);
 
-          this.serve.setUser(
-            authenticated.user[0]._id,
-            authenticated.user[0].name
-          );
+          this.serve.setUser(authenticated.user._id, authenticated.user.name);
         } else {
           this.validUser = false;
         }
