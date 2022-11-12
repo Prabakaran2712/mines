@@ -28,8 +28,6 @@ export class SignupComponent implements OnInit {
       password: this.offerRideForm.controls['password'].value,
     };
     this.addUser();
-
-    this.serve.setUser(this.userdata._id, this.userdata.name);
     this.router.navigate(['']);
     return true;
   }
@@ -46,6 +44,7 @@ export class SignupComponent implements OnInit {
       next: (data) => {
         this.submitted = true;
         this.userdata = data;
+        this.serve.setUser(data.user._id, data.user.name);
       },
     });
   }

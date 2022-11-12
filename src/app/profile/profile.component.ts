@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
         this.scoredetails = data;
       },
     });
-    this.serve.getScores().subscribe({
+    this.serve.getUserScores(this.userid).subscribe({
       next: (data: any) => {
         this.allscore = data;
         this.easybest = this.allscore.filter(
