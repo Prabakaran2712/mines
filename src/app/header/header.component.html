@@ -16,10 +16,11 @@
     </div>
     <ng-template #notlog>
       <div class="d-flex d-row">
-        <div class="login display mx-4 header-options">
-          <a [routerLink]="['/profile', userid]" routerLinkActive="active">{{
-            userdata
-          }}</a>
+        <div
+          class="login display mx-4 header-options"
+          (click)="redirect(userid)"
+        >
+          {{ userdata }}
         </div>
         <div class="login display mx-4 header-options">
           <button class="btn btn-outline-danger logout" (click)="logout()">

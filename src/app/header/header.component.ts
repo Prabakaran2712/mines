@@ -17,6 +17,10 @@ export class HeaderComponent implements OnInit {
   back(value: string) {
     this.onHome.emit(value);
   }
+  redirect(id: any) {
+    this.router.navigate([`/profile/${id}`]);
+    // window.location.reload();
+  }
   logout() {
     localStorage.removeItem('userid');
     localStorage.removeItem('username');

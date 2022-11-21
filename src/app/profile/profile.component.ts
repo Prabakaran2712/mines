@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { __makeTemplateObject } from 'tslib';
 import { RestServiceService } from '../rest-service.service';
 
 @Component({
@@ -15,13 +16,24 @@ export class ProfileComponent implements OnInit {
   hardbest = 0;
   allscore!: any;
   userid!: string;
+  loggeduser!: string;
+  isauthuser: boolean = false;
   constructor(
     public serve: RestServiceService,
     private router: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    this.userid = this.router.snapshot.params['id'];
+  loadUserDetail(id: any) {
+    this.userid = id;
+    this.serve.getUserId().subscribe({
+      next: (data: any) => {
+        if (data == this.userid) {
+          this.isauthuser = true;
+        } else {
+          this.isauthuser = false;
+        }
+      },
+    });
     this.serve.getUser(this.userid).subscribe({
       next: (data: any) => {
         this.userdetails = data;
@@ -35,6 +47,10 @@ export class ProfileComponent implements OnInit {
     this.serve.getUserScores(this.userid).subscribe({
       next: (data: any) => {
         this.allscore = data;
+        this.allscore.sort((a: any, b: any) =>
+          a.score > b.score ? 1 : b.score > a.score ? -1 : 0
+        );
+
         this.easybest = this.allscore.filter(
           (data: any) => data.difficulty == 'easy' && data.win
         ).length
@@ -58,5 +74,11 @@ export class ProfileComponent implements OnInit {
           : 0;
       },
     });
+  }
+  ngOnInit(): void {
+    this.router.params.subscribe((routeParams) => {
+      this.loadUserDetail(routeParams['id']);
+    });
+    this.userid = this.router.snapshot.params['id'];
   }
 }

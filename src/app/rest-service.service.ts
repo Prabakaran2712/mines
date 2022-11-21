@@ -1,6 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map, of, observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +14,9 @@ export class RestServiceService {
   userdetial!: any;
   userid!: any;
   constructor(private http: HttpClient) {}
+  errorHandler(error: HttpErrorResponse) {
+    throw throwError(() => new Error(error.message));
+  }
   addUsers(users: any): Observable<any> {
     const options = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http

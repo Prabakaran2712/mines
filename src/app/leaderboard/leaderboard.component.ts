@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RestServiceService } from '../rest-service.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { RestServiceService } from '../rest-service.service';
 export class LeaderboardComponent implements OnInit {
   leadersdata!: any[];
   option: string = 'easy';
-
-  constructor(private serve: RestServiceService) {}
+  redirect(id: any) {
+    this.router.navigate([`/profile/${id}`]);
+  }
+  constructor(private serve: RestServiceService, private router: Router) {}
   ngOnInit(): void {
     this.serve.getScores().subscribe({
       next: (data) => {

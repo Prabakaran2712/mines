@@ -16,20 +16,19 @@ export class SignupComponent implements OnInit {
   offerRideForm!: FormGroup;
   userdata!: any;
   submitted!: boolean;
+  errormsg!: string;
   constructor(
     private formBuider: FormBuilder,
     private serve: RestServiceService,
     private router: Router
   ) {}
-  onSubmit(): boolean {
+  onSubmit(): any {
     this.userdata = {
       name: this.offerRideForm.controls['name'].value,
       email: this.offerRideForm.controls['email'].value,
       password: this.offerRideForm.controls['password'].value,
     };
     this.addUser();
-    this.router.navigate(['']);
-    return true;
   }
   ngOnInit(): void {
     this.submitted = false;
@@ -45,6 +44,10 @@ export class SignupComponent implements OnInit {
         this.submitted = true;
         this.userdata = data;
         this.serve.setUser(data.user._id, data.user.name);
+        this.router.navigate(['']);
+      },
+      error: (err) => {
+        this.errormsg = err.error.error;
       },
     });
   }

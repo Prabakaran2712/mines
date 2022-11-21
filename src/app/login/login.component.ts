@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   password!: string;
   submitted!: boolean;
   validUser!: boolean;
+  error!: string;
   constructor(
     private formBuider: FormBuilder,
     private serve: RestServiceService,
@@ -34,12 +35,17 @@ export class LoginComponent implements OnInit {
       next: (authenticated: any) => {
         if (authenticated.user) {
           this.validUser = true;
+          this.error = '';
           this.router.navigate(['']);
 
           this.serve.setUser(authenticated.user._id, authenticated.user.name);
         } else {
           this.validUser = false;
         }
+      },
+      error: (err) => {
+        this.error = err;
+        this.validUser = false;
       },
     });
     return true;

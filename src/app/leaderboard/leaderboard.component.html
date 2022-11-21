@@ -20,7 +20,13 @@
           <th>{{ "time" | uppercase }}</th>
         </tr>
         <ng-container *ngIf="leadersdata">
-          <tr *ngFor="let data of leadersdata.slice(0,10) | filter: option; let i = index">
+          <tr
+            *ngFor="
+              let data of leadersdata.slice(0, 10) | filter: option;
+              let i = index
+            "
+            (click)="redirect(data.user_details._id)"
+          >
             <td>{{ i + 1 }}</td>
             <td>{{ data.user_details.name }}</td>
             <td>{{ data.score }}</td>

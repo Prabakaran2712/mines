@@ -65,7 +65,12 @@
       </div>
     </div>
     <div class="game-list p-5 flex-fill">
-      <div class="header my-3 text-center">{{ "Your Games" | uppercase }}</div>
+      <div *ngIf="isauthuser" class="header my-3 text-center">
+        {{ "Your Games" | uppercase }}
+      </div>
+      <div *ngIf="!isauthuser" class="header my-3 text-center">
+        {{ "Games" | uppercase }}
+      </div>
       <div class="content overflow-scroll">
         <div *ngFor="let data of scoredetails">
           <app-game-card [data]="data"></app-game-card>

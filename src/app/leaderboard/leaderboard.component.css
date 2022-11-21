@@ -22,3 +22,6 @@ th {
 .drop-down {
   float: right;
 }
+a {
+  text-decoration: none;
+}
