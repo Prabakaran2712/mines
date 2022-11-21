@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   userid!: string;
   loggeduser!: string;
   isauthuser: boolean = false;
+  loading: boolean = true;
   constructor(
     public serve: RestServiceService,
     private router: ActivatedRoute
@@ -74,6 +75,7 @@ export class ProfileComponent implements OnInit {
           : 0;
       },
     });
+    this.loading = false;
   }
   ngOnInit(): void {
     this.router.params.subscribe((routeParams) => {

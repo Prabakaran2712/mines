@@ -1,4 +1,4 @@
-<div class="leader-board m-5 text-center">
+<div class="leader-board m-5 text-center" *ngIf="!loading">
   <div class="header">{{ "Leaderboard" | uppercase }}</div>
   <div class="content">
     <div class="drop-down m-5 w-25">
@@ -35,4 +35,7 @@
       </table>
     </div>
   </div>
+</div>
+<div *ngIf="loading">
+  <app-loading></app-loading>
 </div>

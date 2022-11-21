@@ -10,6 +10,7 @@ import { RestServiceService } from '../rest-service.service';
 export class LeaderboardComponent implements OnInit {
   leadersdata!: any[];
   option: string = 'easy';
+  loading: boolean = true;
   redirect(id: any) {
     this.router.navigate([`/profile/${id}`]);
   }
@@ -19,6 +20,7 @@ export class LeaderboardComponent implements OnInit {
       next: (data) => {
         this.leadersdata = data.filter((d) => d.win);
         this.leadersdata = this.leadersdata.slice(0, 11);
+        this.loading = false;
       },
     });
   }

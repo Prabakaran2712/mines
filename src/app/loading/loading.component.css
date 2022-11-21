@@ -1,0 +1,7 @@
+.component {
+  background-image: url("..//assets/loading.gif");
+  width: 350px;
+  height: 350px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

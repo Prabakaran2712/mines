@@ -1,4 +1,7 @@
-<div *ngIf="userdetails" else #loading>
+<div *ngIf="loading">
+  <app-loading></app-loading>
+</div>
+<div *ngIf="userdetails && !loading">
   <div class="profile-page d-flex d-flex flex-row justify-content-evenly">
     <div class="profile p-5 w-50">
       <div class="header my-3 text-center">{{ "Profile" | uppercase }}</div>
@@ -79,6 +82,3 @@
     </div>
   </div>
 </div>
-<ng-template>
-  <app-loading></app-loading>
-</ng-template>
